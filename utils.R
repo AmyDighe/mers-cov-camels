@@ -2,6 +2,10 @@
 # 1. fixed global parameters #
 ##############################
 
+# depends on:
+
+## the reshaped seroprevalence data: "~data/real/data_sero.rds" (sorry)
+
 ######################################
 ## test sensitivity and specificity ##
 ######################################
