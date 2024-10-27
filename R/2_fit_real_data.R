@@ -11,9 +11,10 @@
 # it generates:
   #  1. a stan-fit object for each of the 4 catalytic models for both the default and 
   #     alternative assumptions about test sensitivity and specificity in
-  #           a. ~/fits/real_data/sens_spec_1/
-  #           b. ~/fits/real/data/sens_spec_2/
+  #           a. ~/fits/real_data/sens_spec_1/ NOTE these are too big to store on the github repo
+  #           b. ~/fits/real/data/sens_spec_2/ NOTE these are too big to store on the github repo
 
+source("dependencies.R")
 
 ## read in the data
 

@@ -1,11 +1,11 @@
 #############################
-## Single Patch Model 2021 ##
+## Single Patch Model 2024 ##
 #############################
 
-# This stochastic model simulates MERS-CoV transmission in a single, homogenously mixed, 
-# age-stratified population of dromedary camels (with ageing)
+# This stochastic model simulates MERS-CoV transmission and vaccination in a single,
+# homogenously mixed, age-stratified population of dromedary camels (with ageing)
 # In this model 1 year is approximated as 360 days 
-# It is written using Odin
+# It is written using odin
 # This version includes age dependent vaccination implemented at the end of each month
 
 N_age <- 49 #number of age classes
@@ -346,10 +346,6 @@ N[] <- Sm[i] + S[i] + I[i] + R[i] + S2[i] + I2[i] + vSm[i] + vS[i] + vI[i] + vR[
 ##################################################################################################################################
 
 ## initial states
-#initial(new_infections[1:N_age]) <- 0
-#initial(new_reinfections[1:N_age]) <- 0
-#initial(v_new_infections[1:N_age]) <- 0
-#initial(v_new_reinfections[1:N_age]) <- 0
 initial(rate_infection) <- 0
 initial(Sm[1:N_age]) <- 0
 initial(S[1:N_age]) <- S_ini_p[i]
@@ -365,8 +361,6 @@ initial(vS2[1:N_age]) <- 0
 initial(vI2[1:N_age]) <- 0
 
 initial(tt) <- 1
-#initial(N[1:N_age]) <- S_ini_p[i]
-#initial(seroprevalence[1:N_age]) <- 0
 initial(seropoz_A4) <- 0
 
 ## initial population size for use in birthrate
@@ -450,8 +444,6 @@ output(weighted_incidence[])<- new_infections[i] + reduced_shed * new_reinfectio
   v_shed * v_new_infections[i] + v_reduced_shed * v_new_reinfections[i]
 output(inc_inf1[])<- new_infections[i]
 output(inc_inf2[])<- new_reinfections[i]
-# output(inc_v_inf1[])<- v_new_infections[i]
-# output(inc_v_inf2[])<- v_new_reinfections[i]
 
 ###########
 ## other ##
@@ -461,8 +453,6 @@ output(birthrate) <- birth_rate
 output(births) <- new_births
 output(importations) <- imported_cases
 output(yy) <- yr[12]
-
-#output(foi) <- beta * sum(I[1:N_age]) / sum(N[1:N_age]) # foi applying to first infections only
 
 
 ################################################################################################################################
@@ -589,12 +579,9 @@ dim(vaxd_I2) <- N_age
 
 dim(births_det) <- 360
 dim(births_detr) <- 360
-#dim(seroprevalence) <- N_age
 dim(N) <- N_age
 dim(ind1) <- 48
 dim(ind2) <- 48
 dim(inc_inf1) <- N_age
 dim(inc_inf2) <- N_age
-# dim(inc_v_inf1) <- N_age
-# dim(inc_v_inf2) <- N_age
 

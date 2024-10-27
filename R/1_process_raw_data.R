@@ -12,6 +12,7 @@
   #  4. the upper age bound for each element of the age class x study matrix "~/data/real/AGE_U.rds"
   #  5. the number of camels for each element of the age class x study matrix "~/data/real/N_CAMELS.rds"
 
+source("dependencies.R")
 
 # read in the data from systematic review
 

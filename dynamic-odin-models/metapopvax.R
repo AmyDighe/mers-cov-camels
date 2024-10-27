@@ -1,5 +1,5 @@
 ####################################################
-## Meta-population Model 2021 - odin.dust version ##
+## Meta-population Model 2024 - odin.dust version ##
 ####################################################
 
 # This stochastic model is an extension of metapop.R that simulates vaccination
@@ -460,23 +460,7 @@ update(Ntot) <- sum(Sm[, ,]) + sum(S[ ,  ,  ]) + sum(I[ ,  ,  ])+
   sum(R[ ,  ,  ]) + sum(S2[ ,  , ]) + sum(I2[ , , ]) + 
   sum(vSm[, ,]) + sum(vS[ ,  ,  ]) + sum(vI[ ,  ,  ])+
   sum(vR[ ,  ,  ]) + sum(vS2[ ,  , ]) + sum(vI2[ , , ])
-# update(Vtot_age[]) <- sum(vSm[i, ,]) + sum(vS[ i,  ,  ]) + sum(vI[ i,  ,  ])+
-#   sum(vR[ i,  ,  ]) + sum(vS2[ i,  , ]) + sum(vI2[ i, , ])
-# update(Ntot_age[]) <- sum(Sm[i, ,]) + sum(S[ i,  ,  ]) + sum(I[ i,  ,  ])+
-#   sum(R[ i,  ,  ]) + sum(S2[ i,  , ]) + sum(I2[ i, , ]) + 
-#   sum(vSm[i, ,]) + sum(vS[ i,  ,  ]) + sum(vI[ i,  ,  ])+
-#   sum(vR[ i,  ,  ]) + sum(vS2[ i,  , ]) + sum(vI2[ i, , ])
-# update(Vtot) <- sum(vSm[, ,]) + sum(vS[ ,  ,  ]) + sum(vI[ ,  ,  ])+
-#   sum(vR[ ,  ,  ]) + sum(vS2[ ,  , ]) + sum(vI2[ , , ])
-# update(Vtot_patch[,]) <- sum(vSm[, i, j]) + sum(vS[ , i, j]) + sum(vI[ , i, j])+
-#   sum(vR[ , i, j]) + sum(vS2[ , i, j]) + sum(vI2[ , i, j])
-# update(Ntot_patch[,]) <- sum(Sm[ , i, j]) + sum(S[ , i, j]) + sum(I[ , i, j])+
-#   sum(R[ , i, j]) + sum(S2[ , i, j]) + sum(I2[ , i, j]) + 
-#   sum(vSm[ , i, j]) + sum(vS[ , i, j]) + sum(vI[ , i, j])+
-#   sum(vR[ , i, j]) + sum(vS2[ , i, j]) + sum(vI2[ , i, j])
 update(Itot_patch[,]) <- sum(I[, i, j]) + sum(I2[ , i, j]) + sum(vI[ , i, j]) + sum(vI2[ , i, j])
-# update(VN_patch[ , ]) <- Vtot_patch[ i, j] / Ntot_patch[ i, j] 
-# update(VN_age[]) <- Vtot_age[i]/Ntot_age[i]
 
 # incidence
 update(incidence) <- sum(new_infections[ ,  ,]) + sum(new_reinfections[ , , ]) + sum(v_new_infections[ , , ]) + sum(v_new_reinfections[ , , ])
@@ -517,14 +501,7 @@ initial(vI2[ , , ]) <- 0
 initial(tt) <- 1
 initial(Itot) <- 0
 initial(Ntot) <- sum(S_ini_p)
-# initial(Vtot) <- 0
-# initial(Vtot_age[]) <- 0
-# initial(Vtot_patch[,]) <- 0
-# initial(Ntot_age[]) <- sum(S_ini_p[i,,])
-# initial(Ntot_patch[,]) <- sum(S_ini_p[,i,j])
 initial(Itot_patch[,]) <- 0
-# initial(VN_age[]) <- 0
-# initial(VN_patch[,]) <- 0
 initial(incidence) <- 0
 initial(w_incidence) <- 0
 initial(new_inf) <- 0
@@ -682,9 +659,4 @@ dim(external_vI2) <- c(nr, nc)
 
 
 dim(Itot_patch) <- c(nr, nc)
-# dim(Vtot_age) <- N_age
-# dim(Ntot_age) <- N_age
-# dim(Ntot_patch) <- c(nr, nc)
-# dim(Vtot_patch) <- c(nr, nc)
-# dim(VN_patch) <- c(nr, nc)
-# dim(VN_age) <- N_age
+

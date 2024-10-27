@@ -1,12 +1,12 @@
 #############################
-## Single Patch Model 2021 ##
+## Single Patch Model 2024 ##
 #############################
 
 # This simple stochastic model simulates MERS-CoV transmission in a single, homogenously mixed, 
 # age-stratified population of dromedary camels (with ageing)
 # In this model 1 year is approximated as 360 days 
 # It is written using Odin
-# It can then be run from a user-edited R script "odin_single_patch_run.R"
+# It can then be run from a user-edited R script (e.g. your own or ~R/6_estimate_R0.R or ~R/7_simulate_CCS.R)
 
 N_age <- 49 #number of age classes
 

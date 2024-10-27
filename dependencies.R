@@ -20,5 +20,6 @@ library(modeest)
 library(lemon)
 library(grid)
 library(gridExtra)
+library(binom)
 # functions and fixed parameters
 source("utils.R")

@@ -1,0 +1,5 @@
+"","model","DIC","Dbar","pD"
+"1","model 1: seroconversion",533,514,19
+"2","model 2: seroconversion + seroreversion",506.8,487.2,19.6
+"3","model 3: seroconversion + mAbs",492.8,477.7,15.1
+"4","model 4: seroconversion + seroreversion + mAbs",492.1,471.4,20.7

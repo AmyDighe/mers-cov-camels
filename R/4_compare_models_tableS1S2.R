@@ -2,13 +2,13 @@
 
 # it depends on:
 #  1. the DIC function in ~utils.R
-#  2. the stan models fits in ~fits/real_data/ (NOTE - these fits are too large to upload to 
+#  2. the stan models fits in ~fits/real_data/ (NOTE - these full fits needed to estimate DIC are too large to upload to 
 #     github so please regenerate using scripts ~R/2_fit_real_data.R followed by ~R/3_process_fits.R)
 
 # it generates:
-#  Table S1 for the manuscript, made up of:
-#   a. ~tables/DIC1.csv using core assumptions about sensitivity and specificity of Ab tests
-#   b. ~tables/DIC2.csv using alternative assumptions about sensitivity and specificity of Ab tests
+#  Table S1 and S2 for the manuscript, made up of:
+#   a. S1 ~tables/DIC1.csv using core assumptions about sensitivity and specificity of Ab tests
+#   b. S2 ~tables/DIC2.csv using alternative assumptions about sensitivity and specificity of Ab tests
 
 source("dependencies.R")
 
@@ -30,7 +30,7 @@ DIC_fit3bb_exp_1 <- DIC_across_chains(fit = fit3bb_exp_1, no_chains = 4, total_l
 DIC_fit4bb_exp_1 <- DIC_across_chains(fit = fit4bb_exp_1, no_chains = 4, total_length = 100000, burnin = 5000)
 
 
-# generate Table X in manuscript
+# generate Table S1 in supplementary material
 
 tab1 <- data.frame(model = c("model 1: seroconversion",
                              "model 2: seroconversion + seroreversion",
@@ -48,7 +48,7 @@ tab1 <- data.frame(model = c("model 1: seroconversion",
                           DIC_fit2bb_exp_1$av_DIC$`mean(pD)`,
                           DIC_fit3bb_exp_1$av_DIC$`mean(pD)`,
                           DIC_fit4bb_exp_1$av_DIC$`mean(pD)`), 1))
-write.csv(file = here("tables/DIC1.csv"), tab1)
+write.csv(file = here("tables/tableS1_DIC1.csv"), tab1)
 
 
 # assuming lower sensitivity of NTs
@@ -66,7 +66,7 @@ DIC_fit3bb_exp_2 <- DIC_across_chains(fit = fit3bb_exp_2, no_chains = 4, total_l
 DIC_fit4bb_exp_2 <- DIC_across_chains(fit = fit4bb_exp_2, no_chains = 4, total_length = 100000, burnin = 5000)
 
 
-# generate Table SX in Supplementary material
+# generate Table S2 in Supplementary material
 
 tab2 <- data.frame(model = c("model 1: seroconversion",
                              "model 2: seroconversion + seroreversion",
@@ -84,5 +84,5 @@ tab2 <- data.frame(model = c("model 1: seroconversion",
                           DIC_fit2bb_exp_2$av_DIC$`mean(pD)`,
                           DIC_fit3bb_exp_2$av_DIC$`mean(pD)`,
                           DIC_fit4bb_exp_2$av_DIC$`mean(pD)`), 1))
-write.csv(file = here("tables/DIC2.csv"), tab2)
+write.csv(file = here("tables/tableS2_DIC2.csv"), tab2)
 

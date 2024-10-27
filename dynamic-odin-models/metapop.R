@@ -1,5 +1,5 @@
 ####################################################
-## Meta-population Model 2021 - odin.dust version ##
+## Meta-population Model 2024 - odin.dust version ##
 ####################################################
 
 # This stochastic model simulates MERS-CoV transmission in a structured population,

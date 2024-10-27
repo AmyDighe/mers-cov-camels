@@ -10,6 +10,8 @@
 #       a. fits/processed_real/exp/sens_spec_1/
 #       b. fits/processed_real/exp/sens_spec_2/
 
+source("dependencies.R")
+
 #############
 # real data #
 #############
