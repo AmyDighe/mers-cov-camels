@@ -1,7 +1,7 @@
 # mers-cov-camels
 ![mers-camels-logo](https://github.com/user-attachments/assets/5a65014a-8a19-4f5b-be58-8644fc8205c3)
 
-This repository contains the code used to model MERS-CoV transmission and vaccination in dromedary camels, accompanying the manuscript ***"Modelling transmission of MERS-CoV in dromedary camel populations and the potential impact of animal vaccination"*** (link pending). All code was run in R version 3.5.3. Catalytic models were fitted using rstan version 2.26.2 and dynamic models were developed and run using odin version 1.2.4. Data wrangling and figures depend on tidyverse version 2.0.0. Further details of versions used for all R packages are available in `dependencies.R`.
+This repository contains the code used to model MERS-CoV transmission and vaccination in dromedary camels, accompanying the manuscript ***"Modelling transmission of MERS-CoV in dromedary camel populations and the potential impact of animal vaccination"*** (link pending). All code was run in R version 3.5.3. Catalytic models were fitted using rstan version 2.26.2 and dynamic models were developed and run using odin version 1.5.11, dust version 0.15.3 and odin.dust version 0.3.13 (all available from [the mrc-ide r-universe](https://mrc-ide.r-universe.dev/builds)). Data wrangling and figures depend on tidyverse version 2.0.0. Further details of versions used for all R packages are available in `dependencies.R`.
 
 # Installation
 To examine/use the code in this repository, you can either 
@@ -13,7 +13,7 @@ Outbreaks of Middle East Respiratory syndrome coronavirus (MERS-CoV) in humans a
 
 # Instructions for use
 Once you have forked or downloaded the repository and installed the R packages in `dependencies.R: 
-1. to use the dynamic transmission models to fit to run your own simulations of MERS-CoV transmission and vaccination in camels, example r scripts `EXAMPLE_run_singlepop_model.R` or `EXAMPLE_run_metapop_model.R are included which you can adapt by changing the user input parameters, and selecting the model outputs that you are most interested in. Then all you need to do is run your adapted script.
+1. to use the dynamic transmission models to fit to run your own simulations of MERS-CoV transmission and vaccination in camels, example r scripts `EXAMPLE_run_singlepop_model.R` (~5 minute run time on a 4 core laptop) or `EXAMPLE_run_metapop_model.R (~10 minute run time on a 4 core laptop) are included which you can adapt by changing the user input parameters, and selecting the model outputs that you are most interested in. Then all you need to do is run your adapted script. 
 2. to use the code to replicate our analysis in it's entirety it would be necessary to run the task scripts in the order denoted in their file names. This is because some dependencies of the tasks are outputs of other tasks, and although we have uploaded most dependencies some model outputs and model fits are very large files so could not be uploaded. Some of the scripts (in particular those using the metapopulation model) take a long time to run the analysis that went into the manuscript (~1 week for 8_simulate_CCS_mp.R and 10_estimate_optimal_age_vax.R on my local 4 core machine). I am currently in the process of testing this rerun on another local machine but in the meantime if you run into any issues it is best to contact amydighe@gmail.com. 
 
 ## Structure of the repository
