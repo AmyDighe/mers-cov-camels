@@ -116,7 +116,7 @@ x <- metavax$new(pars = list(N_age = N_age, nr = n_r, nc = n_c,
                              vaxp = rep(coverage[1], N_age), 
                              rho = pars_vax$rho[1]
 ), 
-step = 0, 
+time = 1, 
 n_particles = n_particles, 
 n_threads = 2L, 
 seed = 1L)
@@ -133,19 +133,15 @@ p_t <- 35*360 # time to assess persistence
 # (in days)
 steps <- seq(0, 20*360, by = 10)# up to the point of vaccination
 steps_2 <- seq(20*360, p_t, by = 10) #after vaccination (different coverages)
-
+# index years
 yr_idx_l <- (seq(20*360, 34*360, by = 360) - 7200)/10
 yr_idx_u <- yr_idx_l + 35
+
+# set up arrays to save outputs
 patch_years <- array(NA, dim = c(N_patch, length(yr_idx_l), length(coverage)))
-an_Re <- array(NA, dim = c(dim(pars_vax)[1], length(yr_idx_l), length(coverage), 100))
-an_inc <- an_Re
-an_winc <- an_Re
-
-
 persist <- matrix(NA, nrow = dim(pars_vax)[1], ncol = length(coverage))
 inc <- persist
 winc <- persist
-Re <- persist
 
 for(i in 1:length(patch_pop)){
 ## stochastic initialization
@@ -186,7 +182,7 @@ for(j in c(51:54)){
                              v_reduced_shed = pars_vax$v_reduced_shed[j], 
                              vaxp = rep(0, 49), 
                              rho = pars_vax$rho[j]), 
-                 step = 0)
+                 time = 1)
   out <- x$simulate(steps)
   saved_state <- x$state()
   
@@ -220,7 +216,7 @@ for(j in c(51:54)){
                                v_reduced_shed = pars_vax$v_reduced_shed[j], 
                                vaxp = c(rep(0, 5), coverage[k], rep(0, 43)), 
                                rho = pars_vax$rho[j]), 
-                   step = 20*360,
+                   time = 20*360,
                    state = saved_state,
                    set_initial_state = FALSE)
     
@@ -236,10 +232,6 @@ for(j in c(51:54)){
       patch_years[ , m, k] <- rowSums(rowSums(Itot_patch[ , , (yr_idx_l[m] : yr_idx_u[m])], dim = 2) >0)
       # annual incidence each year following vaccine introduction
       an_inc[j,m,k,] <- rowSums(state[2,,(yr_idx_l[m] : yr_idx_u[m])])
-      # annual weighted incidence each year following vaccine introduction
-      # an_winc[j,m,k,] <- rowSums(state[3,,(yr_idx_l[m] : yr_idx_u[m])])
-      # annual average Re for each run following vaccine introduction
-      # an_Re[j,m,k,] <- rowMeans(state[29,,(yr_idx_l[m] : yr_idx_u[m])])
       }
     
     # mean cumulative incidence in the 10 years post vaccine introduction

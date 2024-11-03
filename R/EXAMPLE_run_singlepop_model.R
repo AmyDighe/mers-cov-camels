@@ -150,7 +150,7 @@ x <- sp_model$new(alpha = alpha, beta = beta, gamma = gamma, sigma = waning, sig
 # set the number of stochastic runs you want #
 ##############################################
 
-n_runs <- 100 ## (e.g. this will run the model 100 times in parallel)
+n_runs <- 100 ## (e.g. this will run the model 100 times)
 
 ###############################
 # select the outputs you want #
