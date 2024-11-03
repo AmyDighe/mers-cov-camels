@@ -6,6 +6,7 @@
 #  1. the transmission model "dynamic-odin-models/metapopvax.R"
 #  2. the estimated rate of waning of mAbs from the best fitting catalytic model
 #     "fits/processed_real/exp/sens_spec_1/fit4bb.rds
+#  3. ~R/pars_vax.rds generated in 10_estimate_optimal_age_FigS6S7.R
 
 # it generates:
 #  1. Very large model output files summarising persistence of transmission

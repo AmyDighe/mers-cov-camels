@@ -3,8 +3,9 @@ library(rstan)
 options(mc.cores = parallel::detectCores())
 rstan_options(auto_write = TRUE)
 
-# odin.dust
-library(odin.dust)
+# odin and odin.dust
+library(odin.dust) # version 0.3.13
+library(odin) # version 1.5.11 # can be installed using: install.packages("odin", repos = c("https://mrc-ide.r-universe.dev", "https://cloud.r-project.org"))
 
 # other R packages and version used in model development
 library(tidyverse) # version 2.0.0

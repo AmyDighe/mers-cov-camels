@@ -102,12 +102,12 @@ p_S2[1:N_age] <- 1 - exp(- (rate_reinfection + mu[i]))
 p_I2[1:N_age] <- 1 - exp(- (gamma + mu[i])) 
 
 # outflows due to infection, recovery or death
-outflow_Sm[1:N_age] <- rbinom(Sm[i], prob = p_Sm[i])
-outflow_S[1:N_age] <- rbinom(S[i], prob = p_S[i])
-outflow_I[1:N_age] <- rbinom(I[i], prob = p_I[i])
-outflow_R[1:N_age] <- rbinom(R[i], prob = p_R[i])
-outflow_S2[1:N_age] <- rbinom(S2[i], prob = p_S2[i])
-outflow_I2[1:N_age] <- rbinom(I2[i], prob = p_I2[i])
+outflow_Sm[1:N_age] <- rbinom(Sm[i], p_Sm[i])
+outflow_S[1:N_age] <- rbinom(S[i], p_S[i])
+outflow_I[1:N_age] <- rbinom(I[i],  p_I[i])
+outflow_R[1:N_age] <- rbinom(R[i],  p_R[i])
+outflow_S2[1:N_age] <- rbinom(S2[i],  p_S2[i])
+outflow_I2[1:N_age] <- rbinom(I2[i],  p_I2[i])
 
 
 ###############################################################################################################
@@ -130,13 +130,13 @@ norm_p_gamma[1:N_age] <- p_gamma/(p_gamma + p_mu[i])
 norm_p_sigma[1:N_age] <- p_sigma/(p_sigma + p_mu[i])
 
 # number of new infections, recoveries and newly susceptible
-new_waned_mAb[1:N_age] <- rbinom(outflow_Sm[i], prob = norm_p_sigma_m[i])
-new_infections_mAb[1:N_age] <- rbinom(outflow_Sm[i], prob = norm_p_infection_mAb[i])
-new_infections[1:N_age] <- rbinom(outflow_S[i], prob = norm_p_infection[i])
-new_recoveries[1:N_age] <- rbinom(outflow_I[i], prob = norm_p_gamma[i])
-new_waned[1:N_age] <- rbinom(outflow_R[i], prob = norm_p_sigma[i])
-new_reinfections[1:N_age] <- rbinom(outflow_S2[i], prob = norm_p_reinfection[i])
-new_recoveries_2[1:N_age] <- rbinom(outflow_I2[i], prob = norm_p_gamma[i])
+new_waned_mAb[1:N_age] <- rbinom(outflow_Sm[i],  norm_p_sigma_m[i])
+new_infections_mAb[1:N_age] <- rbinom(outflow_Sm[i],  norm_p_infection_mAb[i])
+new_infections[1:N_age] <- rbinom(outflow_S[i],  norm_p_infection[i])
+new_recoveries[1:N_age] <- rbinom(outflow_I[i],  norm_p_gamma[i])
+new_waned[1:N_age] <- rbinom(outflow_R[i],  norm_p_sigma[i])
+new_reinfections[1:N_age] <- rbinom(outflow_S2[i],  norm_p_reinfection[i])
+new_recoveries_2[1:N_age] <- rbinom(outflow_I2[i],  norm_p_gamma[i])
 
 ###################
 ## birth process ##
@@ -151,7 +151,7 @@ pi <- 3.14159 # odin doesn't have pi
 birth_rate <- N_0 * alpha * (1 + (delta * (cos(2 * pi * tt / 360)))) # N_0 is the initial population size
 new_births <- rpois(birth_rate) #per day
 
-births_protected <- rbinom(new_births, prob = seropoz_A4) # protected by mAbs
+births_protected <- rbinom(new_births,  seropoz_A4) # protected by mAbs
 births_not_protected <- new_births - births_protected #  NOT protected by mAbs
 
 #########################

@@ -138,19 +138,19 @@ p_vS2[] <- 1 - exp(- (rate_reinfection_vaccinated + mu[i] + rho))
 p_vI2[] <- 1 - exp(- (v_gamma + mu[i] + rho))
 
 # outflows due to infection, recovery or death or vaccination
-outflow_Sm[] <- rbinom(Sm[i], prob = p_Sm[i])
-outflow_S[] <- rbinom(S[i], prob = p_S[i])
-outflow_I[] <- rbinom(I[i], prob = p_I[i])
-outflow_R[] <- rbinom(R[i], prob = p_R[i])
-outflow_S2[] <- rbinom(S2[i], prob = p_S2[i])
-outflow_I2[] <- rbinom(I2[i], prob = p_I2[i])
+outflow_Sm[] <- rbinom(Sm[i], p_Sm[i])
+outflow_S[] <- rbinom(S[i], p_S[i])
+outflow_I[] <- rbinom(I[i], p_I[i])
+outflow_R[] <- rbinom(R[i], p_R[i])
+outflow_S2[] <- rbinom(S2[i], p_S2[i])
+outflow_I2[] <- rbinom(I2[i], p_I2[i])
 ## for vaccinated individuals
-outflow_vSm[] <- rbinom(vSm[i], prob = p_vSm[i])
-outflow_vS[] <- rbinom(vS[i], prob = p_vS[i])
-outflow_vI[] <- rbinom(vI[i], prob = p_vI[i])
-outflow_vR[] <- rbinom(vR[i], prob = p_vR[i])
-outflow_vS2[] <- rbinom(vS2[i], prob = p_vS2[i])
-outflow_vI2[] <- rbinom(vI2[i], prob = p_vI2[i])
+outflow_vSm[] <- rbinom(vSm[i], p_vSm[i])
+outflow_vS[] <- rbinom(vS[i], p_vS[i])
+outflow_vI[] <- rbinom(vI[i], p_vI[i])
+outflow_vR[] <- rbinom(vR[i], p_vR[i])
+outflow_vS2[] <- rbinom(vS2[i], p_vS2[i])
+outflow_vI2[] <- rbinom(vI2[i], p_vI2[i])
 
 
 ###############################################################################################################
@@ -187,28 +187,28 @@ norm_p_rho_vS2[] <- p_rho/(p_v_reinfection + p_mu[i] + p_rho)
 norm_p_rho_vI2[] <- p_rho/(p_v_gamma + p_mu[i] + p_rho)
 
 # number of new infections, vaccinations, recoveries and newly susceptible
-new_waned_mAb[] <- rbinom(outflow_Sm[i], prob = norm_p_sigma_m[i])
-new_infections_mAb[] <- rbinom(outflow_Sm[i], prob = norm_p_infection_mAb[i])
-new_infections[] <- rbinom(outflow_S[i], prob = norm_p_infection[i])
-new_recoveries[] <- rbinom(outflow_I[i], prob = norm_p_gamma[i])
-new_waned[] <- rbinom(outflow_R[i], prob = norm_p_sigma[i])
-new_reinfections[] <- rbinom(outflow_S2[i], prob = norm_p_reinfection[i])
-new_recoveries_2[] <- rbinom(outflow_I2[i], prob = norm_p_gamma[i])
+new_waned_mAb[] <- rbinom(outflow_Sm[i], norm_p_sigma_m[i])
+new_infections_mAb[] <- rbinom(outflow_Sm[i],    norm_p_infection_mAb[i])
+new_infections[] <- rbinom(outflow_S[i],    norm_p_infection[i])
+new_recoveries[] <- rbinom(outflow_I[i],    norm_p_gamma[i])
+new_waned[] <- rbinom(outflow_R[i],    norm_p_sigma[i])
+new_reinfections[] <- rbinom(outflow_S2[i],    norm_p_reinfection[i])
+new_recoveries_2[] <- rbinom(outflow_I2[i],    norm_p_gamma[i])
 
-v_new_waned_mAb[] <- rbinom(outflow_vSm[i], prob = norm_p_v_sigma_m[i])
-v_new_infections_mAb[] <- rbinom(outflow_vSm[i], prob = norm_p_v_infection_mAb[i])
-v_new_infections[] <- rbinom(outflow_vS[i], prob = norm_p_v_infection[i])
-v_new_recoveries[] <- rbinom(outflow_vI[i], prob = norm_p_v_gamma[i])
-v_new_waned[] <- rbinom(outflow_vR[i], prob = norm_p_v_sigma[i])
-v_new_reinfections[] <- rbinom(outflow_vS2[i], prob = norm_p_v_reinfection[i])
-v_new_recoveries_2[] <- rbinom(outflow_vI2[i], prob = norm_p_v_gamma[i])
+v_new_waned_mAb[] <- rbinom(outflow_vSm[i],    norm_p_v_sigma_m[i])
+v_new_infections_mAb[] <- rbinom(outflow_vSm[i],    norm_p_v_infection_mAb[i])
+v_new_infections[] <- rbinom(outflow_vS[i],    norm_p_v_infection[i])
+v_new_recoveries[] <- rbinom(outflow_vI[i],    norm_p_v_gamma[i])
+v_new_waned[] <- rbinom(outflow_vR[i],    norm_p_v_sigma[i])
+v_new_reinfections[] <- rbinom(outflow_vS2[i],    norm_p_v_reinfection[i])
+v_new_recoveries_2[] <- rbinom(outflow_vI2[i],    norm_p_v_gamma[i])
 
-new_waned_vax_M[] <- rbinom(outflow_vSm[i], prob = norm_p_rho_vM[i])
-new_waned_vax_S[] <- rbinom(outflow_vS[i], prob = norm_p_rho_vS[i])
-new_waned_vax_I[] <- rbinom(outflow_vI[i], prob = norm_p_rho_vI[i])
-new_waned_vax_R[] <- rbinom(outflow_vR[i], prob = norm_p_rho_vR[i])
-new_waned_vax_S2[] <- rbinom(outflow_vS2[i], prob = norm_p_rho_vS2[i])
-new_waned_vax_I2[] <- rbinom(outflow_vI2[i], prob = norm_p_rho_vI2[i])
+new_waned_vax_M[] <- rbinom(outflow_vSm[i],    norm_p_rho_vM[i])
+new_waned_vax_S[] <- rbinom(outflow_vS[i],    norm_p_rho_vS[i])
+new_waned_vax_I[] <- rbinom(outflow_vI[i],    norm_p_rho_vI[i])
+new_waned_vax_R[] <- rbinom(outflow_vR[i],    norm_p_rho_vR[i])
+new_waned_vax_S2[] <- rbinom(outflow_vS2[i],    norm_p_rho_vS2[i])
+new_waned_vax_I2[] <- rbinom(outflow_vI2[i],    norm_p_rho_vI2[i])
 
 ###################
 ## birth process ##
@@ -223,7 +223,7 @@ pi <- 3.14159 # odin doesn't have pi
 birth_rate <- N_0 * alpha * (1 + (delta * (cos(2 * pi * tt / 360)))) # N_0 is the initial population size
 new_births <- rpois(birth_rate) #per day
 
-births_protected <- rbinom(new_births, prob = seropoz_A4) # protected by mAbs
+births_protected <- rbinom(new_births, seropoz_A4) # protected by mAbs
 births_not_protected <- new_births - births_protected #  NOT protected by mAbs
 
 #########################
@@ -270,12 +270,12 @@ new_vI2[] <- vI2[i] - outflow_vI2[i] + v_new_reinfections[i]
 
 vax[] <- if(tt > (7199)) vaxp[i] else 0
 
-vaxd_Sm[] <- rbinom(new_Sm[i], prob = vax[i])
-vaxd_S[] <- rbinom(new_S[i], prob = vax[i])
-vaxd_I[] <- rbinom(new_I[i], prob = vax[i])
-vaxd_R[] <- rbinom(new_R[i], prob = vax[i])
-vaxd_S2[] <- rbinom(new_S2[i], prob = vax[i])
-vaxd_I2[] <- rbinom(new_I2[i], prob = vax[i])
+vaxd_Sm[] <- rbinom(new_Sm[i], vax[i])
+vaxd_S[] <- rbinom(new_S[i], vax[i])
+vaxd_I[] <- rbinom(new_I[i], vax[i])
+vaxd_R[] <- rbinom(new_R[i], vax[i])
+vaxd_S2[] <- rbinom(new_S2[i], vax[i])
+vaxd_I2[] <- rbinom(new_I2[i], vax[i])
 
 update(Sm[1]) <- if(tt %% 30 == 0) 0 else new_Sm[1]
 update(Sm[2:48]) <- if(tt %% 30 == 0) new_Sm[i - 1] - vaxd_Sm[i - 1] else new_Sm[i]

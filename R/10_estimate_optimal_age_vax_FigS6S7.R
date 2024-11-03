@@ -14,7 +14,7 @@
 #  2. Figure S6 in the SM (~figs/FigS6.png)
 #  3. FIgure S7 in the SM (~figs/FigS7.png)
 
-
+source("dependencies.R")
 
 ##############################
 # optimal age of vaccination #
