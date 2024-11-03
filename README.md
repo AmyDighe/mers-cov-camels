@@ -1,7 +1,7 @@
 # mers-cov-camels
 ![mers-camels-logo](https://github.com/user-attachments/assets/5a65014a-8a19-4f5b-be58-8644fc8205c3)
 
-This repository contains the code used to model MERS-CoV transmission and vaccination in dromedary camels, accompanying the manuscript ***"Modelling transmission of MERS-CoV in dromedary camel populations and the potential impact of animal vaccination"*** (link pending).
+This repository contains the code used to model MERS-CoV transmission and vaccination in dromedary camels, accompanying the manuscript ***"Modelling transmission of MERS-CoV in dromedary camel populations and the potential impact of animal vaccination"*** (link pending). All code was run in R version 3.5.3. Catalytic models were fitted using rstan version 2.26.2 and dynamic models were developed and run using odin version 1.2.4. Data wrangling and figures depend on tidyverse version 2.0.0. Further details of versions used for all R packages are available in `dependencies.R`.
 
 # Summary of the research
 Outbreaks of Middle East Respiratory syndrome coronavirus (MERS-CoV) in humans are driven by recurring zoonotic spillover from camels, leading to demand for camel vaccination. With two vaccine candidates shown to reduce infectiousness, there is a need to better understand transmission of MERS-CoV in camels and assess the potential impact of vaccination. To help address this, we used age-stratified seroprevalence data and a combination of modelling methodologies to estimate key epidemiological quantities including MERS-CoV transmissibility in camels and to estimate vaccine impact on infection incidence. Transmissibility was higher in the Middle East (R0 range 3-34) compared to Africa (2-15) and South Asia (2-4), highlighting the need for setting-specific vaccination strategies. Modelling suggested that even if the vaccine only reduced infectiousness rather than susceptibility to infection, vaccinating calves could achieve large reductions in incidence in moderate and high transmission settings, and interrupt transmission in low transmission settings, provided coverage was high (70-90%).
@@ -13,7 +13,7 @@ Outbreaks of Middle East Respiratory syndrome coronavirus (MERS-CoV) in humans a
 - ***viral shedding data***: data extracted from [Haagmans et al., 2015](https://doi.org/10.1126/science.aad1283) and [Alharbi et al., 2019](https://doi.org/10.1038/s41598-019-52730-4) collected during vaccine trials in dromedaries and used to parameterise the infectiousness of reinfected and vaccinated animals is available in `data/shedding/`.
 
 ## Dependencies
-- `dependencies.R` loads all the R libraries used within the code as well as sourcing `utils.R` which contains the functions used.
+- `dependencies.R` loads all the R libraries used within the code as well as sourcing `utils.R` which contains the functions used. The versions of packages used are included as comments in this file.
 
 ## Code
 The analysis code consists of the catalytic models `catalytic-models-stan` (written in [stan](hamiltonian monte carlo algorithm](https://mc-stan.org/docs/2_24/cmdstan-guide/mcmc-config.html)), tranmsission models `dynamic-odin-models` (written using [odin](https://github.com/mrc-ide/odin/tree/a27f172ad11505c58353833f2e49905f34a0eec5)), and a series of analysis scripts used to run analysis tasks in R ordered from 1-11 in the order that you would want to use them taking into account their dependencies on one and other. At the top of each analysis script in R is a description of the scripts dependencies and its outputs.
