@@ -1,7 +1,7 @@
 # mers-cov-camels
 ![mers-camels-logo](https://github.com/user-attachments/assets/5a65014a-8a19-4f5b-be58-8644fc8205c3)
 
-This repository contains the code used to model MERS-CoV transmission and vaccination in dromedary camels, accompanying the manuscript ***"Modelling transmission of MERS-CoV in dromedary camel populations and the potential impact of animal vaccination"*** (link pending). All code was run in R version 3.5.3. Catalytic models were fitted using rstan version 2.26.2 and dynamic models were developed and run using odin version 1.5.11, dust version 0.15.3 and odin.dust version 0.3.13 (all available from (the mrc-ide r-universe)[https://mrc-ide.r-universe.dev/builds]). Data wrangling and figures depend on tidyverse version 2.0.0. Further details of versions used for all R packages are available in `dependencies.R`.
+This repository contains the code used to model MERS-CoV transmission and vaccination in dromedary camels, accompanying the manuscript ***"Modelling transmission of MERS-CoV in dromedary camel populations and the potential impact of animal vaccination"*** (link pending). All code was run in R version 3.5.3. Catalytic models were fitted using rstan version 2.26.2 and dynamic models were developed and run using odin version 1.5.11, dust version 0.15.3 and odin.dust version 0.3.13 (all available from [the mrc-ide r-universe](https://mrc-ide.r-universe.dev/builds)). Data wrangling and figures depend on tidyverse version 2.0.0. Further details of versions used for all R packages are available in `dependencies.R`.
 
 # Installation
 To examine/use the code in this repository, you can either 
