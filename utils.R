@@ -26,8 +26,8 @@ TEST_SPEC_SENS_2 <- data.frame(TEST_TYPES,
 #############################################
 ## mortality rates for catalytic modelling ##
 #############################################
-mu_0 <- 0.0011 * 360 # daily mortality rate for individuals <2 yrs
-mu <- 0.0003603 * 360 # daily mortality rate for individuals >2 yrs
+mu_0_cat <- 0.0011 * 360 # daily mortality rate for individuals <2 yrs
+mu_cat <- 0.0003603 * 360 # daily mortality rate for individuals >2 yrs
 
 ####################
 ## age resolution ##

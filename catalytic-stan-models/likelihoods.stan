@@ -89,18 +89,40 @@ functions{
     
 // assuming exponential age distribution within each age class
 
+// deriving m0
+    real get_m_0(real foi,
+                 real sigma_r,
+                 real sigma_m,
+                 real mu){
+                   
+    real m_0;
+    
+    m_0 = ((foi / foi + sigma_r) * (1 - ((mu / (foi + sigma_r + sigma_m)) * exp(-4*(foi + sigma_r))))) / 
+    (1 + ((foi * mu) / (foi + sigma_r - sigma_m)) * ((exp(-4 * sigma_m) / 
+    (sigma_m + mu)) - (exp(-4*(foi + sigma_r)) / (foi + sigma_r + mu))));
+    
+    return m_0;
+                 }
+
 // predicted seroprevalence due to infection  
     real prev4_int_exp(real foi,
                         real sigma_r, 
                         real sigma_m,
-                        real M, 
+                        real mabs,
                         real age1, 
                         real age2,
                         real mu_0,
                         real mu){
                     
     real pp;
+    real M;
     
+    if(mabs == 1){
+          M = get_m_0(foi, sigma_r, sigma_m, mu);
+    } else {
+      M = 0;
+    }
+
     if(age1<2 && age2<2){
       
       pp = mu_0 / (exp(-mu_0 * age1) - exp(-mu_0 * age2)) * (
@@ -171,13 +193,20 @@ functions{
     real prev_mAb_exp(real foi,
                         real sigma_r, 
                         real sigma_m,
-                        real M, 
+                        real mabs,
                         real age1, 
                         real age2,
                         real mu_0,
                         real mu){
                     
     real mp;
+    real M;
+    
+    if(mabs == 1){
+          M = get_m_0(foi, sigma_r, sigma_m, mu);
+    } else{
+      M = 0;
+    }
     
     if(age1<2 && age2<2){
       
@@ -233,15 +262,9 @@ functions{
                     real pred_mab;
                     real pred_prev_tot;
                     real obs_pred_prev;
-                    real m_initial;
                     
-              if(mabs > 0) {
-       m_initial = prev4_int_exp(foi, sigma_r, sigma_m, 0, 4.0000, 10.0000, mu_0, mu);
-    } else {
-       m_initial = 0;
-    }
-          pred_prev = prev4_int_exp(foi, sigma_r, sigma_m, m_initial, age1, age2, mu_0, mu);
-          pred_mab = prev_mAb_exp(foi, sigma_r, sigma_m, m_initial, age1, age2, mu_0, mu);
+          pred_prev = prev4_int_exp(foi, sigma_r, sigma_m, mabs, age1, age2, mu_0, mu);
+          pred_mab = prev_mAb_exp(foi, sigma_r, sigma_m, mabs, age1, age2, mu_0, mu);
           pred_prev_tot = pred_prev + pred_mab;  
           obs_pred_prev = sens * pred_prev_tot + (1 - spec) * (1 - pred_prev_tot);
     
