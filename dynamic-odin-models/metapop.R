@@ -224,7 +224,7 @@ births_not_protected[ , ] <- new_births[i, j] - births_protected[i, j] #  NOT pr
 ## importation process ##
 #########################
 
-importation_rate <- user() # should be proportional to population size?
+importation_rate <- user()
 imported_cases <- rpois(importation_rate) #per day
 imp_t <- user() # a user defined time at which cases are imported
 

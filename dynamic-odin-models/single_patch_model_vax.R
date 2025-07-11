@@ -36,12 +36,11 @@ reduced_shed <- user() # proportion of infectiousness seen in reinfections. defa
 v_reduced_shed <- user() # proportion of infectiousness seen in vaccinated first infections
 v_shed <- user() # proportion of infectiousness seen in vaccinated reinfections
 
-# frequency dependent rate of infection
-
 # background foi for introduction
-foi_bg_usr <- user()
-foi_bg <- if(tt < 3600) foi_bg_usr else 0 # corresponds to 5 new infections per 1000 susceptible individuals per year
+foi_bg_usr <- user() # user defined
+foi_bg <- if(tt < 3600) foi_bg_usr else 0
 
+# rates of infection
 update(rate_infection) <- (beta * sum(I[]) + 
                              beta * reduced_shed * sum(I2[]) + 
                              beta * v_shed * sum(vI[]) + 
@@ -230,7 +229,7 @@ births_not_protected <- new_births - births_protected #  NOT protected by mAbs
 ## importation process ##
 #########################
 
-importation_rate <- user(0) # should be proportional to population size?
+importation_rate <- user(0)
 imported_cases <- rpois(importation_rate) #per day
 imp_t <- user() # a user defined time at which cases are imported
 

@@ -158,7 +158,7 @@ births_not_protected <- new_births - births_protected #  NOT protected by mAbs
 ## importation process ##
 #########################
 
-importation_rate <- user(0) # should be proportional to population size?
+importation_rate <- user(0)
 imported_cases <- rpois(importation_rate) #per day
 imp_t <- user() # a user defined time at which cases are imported
 
