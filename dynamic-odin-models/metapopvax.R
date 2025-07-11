@@ -46,7 +46,7 @@ v_shed <- user() # proportion of infectiousness seen in vaccinated reinfections
 
 connectivity <- user() ##connection strength between patches (0<x<1)
 
-## with edge effects
+## with edge effects. e.g. for 5x5:
 
 ## 1 | 5 | 6 | 7 |2
 ## --+---+---+---+--

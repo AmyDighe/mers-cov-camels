@@ -3,7 +3,7 @@
 ####################################################
 
 # This stochastic model simulates MERS-CoV transmission in a structured population,
-# where the total population is split into a grid of 25 equally sized sub populations.
+# where the total population is split into a grid of equally sized sub populations.
 # sub populations can contribute to the foi in their neighbouring patches
 # age-stratified population of dromedary camels (with ageing)
 # In this model 1 year is approximated as 360 days 
@@ -40,19 +40,8 @@ reduced_shed <- user() # proportion of shedding/infectiousness seen in reinfecti
 
 connectivity <- user() ##connection strength between patches (0<x<1)
 
-## with edge effects
-
-## 1 | 5 | 6 | 7 |2
-## --+---+---+---+--
-## 14| 17|18 |19 |8
-## --+---+---+---+--
-## 15| 20| 21| 22|9
-## --+---+---+---+--
-## 16|23 | 24| 25|10
-## --+---+---+---+--
-## 4 | 11| 12| 13|3
-
 # contribution of infections in neighbouring patches
+## with edge effects
 
 # proportion infectious naive per patch
 IN_patch[ , ] <- sum(I[ , i, j])/sum(N[ , i, j]) # where i = rows and j = cols
